@@ -1,0 +1,40 @@
+.phonebookContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #010101;
+}
+
+.labelField {
+  display: block;
+}
+
+.inputField {
+  width: 200px;
+  height: 35px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.formContainer {
+  border: 1px solid;
+}
+
+.formField {
+  width: 400px;
+  margin: 15px;
+  margin-left: 15px;
+  
+}
+
+.btnStyle {
+  display: block;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: rgb(230, 237, 243);
+
+}

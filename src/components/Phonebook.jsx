@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import css from './Phonebook.module.css';
 import { nanoid } from 'nanoid';
 // model.id = nanoid() //=> "V1StGXR8_Z5jdHi6B-myT"
@@ -6,25 +7,18 @@ import { nanoid } from 'nanoid';
 export class Phonebook extends Component {
   state = {
     contacts: [
-      { idd: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { idd: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { idd: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { idd: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     name: '',
     number: '',
   };
 
   handleChange = evt => {
-    //
-    const { name, number, value } = evt.currentTarget;
-    this.setState({ name: evt.currentTarget.value });
-
-    console.log(name);
-    console.log(number);
-    console.log(value);
-    console.log(this.state.name);
-    console.log(this.state);
+    const { name, value } = evt.currentTarget;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = evt => {
@@ -32,19 +26,14 @@ export class Phonebook extends Component {
     const name = this.state.name;
     const number = this.state.number;
     this.state.contacts.map(contact => {
-      this.setState({ contacts: [{ name }] });
-
-      console.log(contact);
+      this.setState({ contacts: [...this.state.contacts, { name, number }] });
+      return console.log(contact);
     });
-console.log(this.state);
+    console.log(evt.currentTarget);
     // this.addContact();
-    // form.reset();
+    evt.currentTarget.reset();
   };
 
-  // addContact = () => {
-  //   const { contacts, name, number } = this.state;
-  //   contacts.push({ name, number });
-  // };
   loginInputId = nanoid();
 
   render() {
@@ -69,6 +58,7 @@ console.log(this.state);
               id={this.loginInputId}
               className={css.inputField}
               onChange={this.handleChange}
+              value={this.state.name}
             />
 
             <label htmlFor={this.loginInputId} className={css.labelField}>
@@ -83,6 +73,7 @@ console.log(this.state);
               id={this.loginInputId}
               className={css.inputField}
               onChange={this.handleChange}
+              // value={this.state.number}
             />
             <button type="onChange" className={css.btnStyle}>
               Add contact

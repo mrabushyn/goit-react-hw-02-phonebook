@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
+import { Filter } from './Filter';
 import css from './Phonebook.module.css';
 import { nanoid } from 'nanoid';
-// model.id = nanoid() //=> "V1StGXR8_Z5jdHi6B-myT"
 
 export class Phonebook extends Component {
   state = {
@@ -14,6 +13,7 @@ export class Phonebook extends Component {
     ],
     name: '',
     number: '',
+    filter: '',
   };
 
   handleChange = evt => {
@@ -23,20 +23,25 @@ export class Phonebook extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    const name = this.state.name;
-    const number = this.state.number;
-    this.state.contacts.map(contact => {
-      this.setState({ contacts: [...this.state.contacts, { name, number }] });
-      return console.log(contact);
-    });
-    console.log(evt.currentTarget);
-    // this.addContact();
+    const { name, number } = this.state;
+    this.setState({ contacts: [...this.state.contacts, { name, number }] });
     evt.currentTarget.reset();
+  };
+
+  changeFilter = evt => {
+    this.setState({ filter: evt.currentTarget.value });
   };
 
   loginInputId = nanoid();
 
   render() {
+    const { contacts, filter } = this.state;
+
+    const normalizedFilter = filter.toLowerCase()
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+
     return (
       <div>
         <h2>Phonebook</h2>
@@ -58,7 +63,6 @@ export class Phonebook extends Component {
               id={this.loginInputId}
               className={css.inputField}
               onChange={this.handleChange}
-              value={this.state.name}
             />
 
             <label htmlFor={this.loginInputId} className={css.labelField}>
@@ -73,7 +77,6 @@ export class Phonebook extends Component {
               id={this.loginInputId}
               className={css.inputField}
               onChange={this.handleChange}
-              // value={this.state.number}
             />
             <button type="onChange" className={css.btnStyle}>
               Add contact
@@ -81,8 +84,9 @@ export class Phonebook extends Component {
           </form>
         </div>
         <h2>Contacts</h2>
+        <Filter value={filter} onChange={this.changeFilter} />
         <ul>
-          {this.state.contacts.map(contact => (
+          {filteredContacts.map(contact => (
             <li key={(contact.id = nanoid())}>
               {contact.name}: {contact.number}
             </li>

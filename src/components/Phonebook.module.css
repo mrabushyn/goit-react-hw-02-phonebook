@@ -2,8 +2,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 30px;
+  font-size: 22px;
   color: #010101;
 }
 
@@ -12,6 +11,7 @@
 }
 
 .inputField {
+  display: block;
   width: 200px;
   height: 35px;
   margin-bottom: 20px;
@@ -33,6 +33,16 @@
   display: block;
   width: 150px;
   height: 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: rgb(230, 237, 243);
+
+}
+
+.delBtnStyle {
+margin-left: 15px;
+  width: 65px;
+  height: 25px;
   font-size: 16px;
   border-radius: 8px;
   background-color: rgb(230, 237, 243);

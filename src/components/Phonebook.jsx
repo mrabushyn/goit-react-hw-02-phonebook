@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Filter } from './Filter';
+import { ContactList } from './ContactList';
 import css from './Phonebook.module.css';
 import { nanoid } from 'nanoid';
 
@@ -85,13 +86,7 @@ export class Phonebook extends Component {
         </div>
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ul>
-          {filteredContacts.map(contact => (
-            <li key={(contact.id = nanoid())}>
-              {contact.name}: {contact.number}
-            </li>
-          ))}
-        </ul>
+        <ContactList value={filteredContacts} />
       </div>
     );
   }

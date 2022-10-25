@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import css from './Phonebook.module.css';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 export class ContactForm extends Component {
-
-state = {
+  state = {
     name: '',
     number: '',
   };
@@ -60,3 +60,7 @@ state = {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

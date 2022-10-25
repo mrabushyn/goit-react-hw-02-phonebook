@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
 import { ContactForm } from './ContactForm';
@@ -30,9 +32,8 @@ export class Phonebook extends Component {
   };
 
   deleteContact = contactId => {
-    
     this.setState(prevState => ({
-  contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
@@ -56,3 +57,7 @@ export class Phonebook extends Component {
     );
   }
 }
+
+Phonebook.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

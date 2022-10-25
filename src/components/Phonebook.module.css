@@ -1,3 +1,7 @@
+body {
+  background-color: rgba(1, 131, 44, 0.226);
+}
+
 .phonebookContainer {
   height: 100vh;
   display: flex;
@@ -46,5 +50,12 @@ margin-left: 15px;
   font-size: 16px;
   border-radius: 8px;
   background-color: rgb(230, 237, 243);
+
+}
+
+.contactList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
 }

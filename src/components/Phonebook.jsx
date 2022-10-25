@@ -23,27 +23,17 @@ export class Phonebook extends Component {
     findSameEl
       ? alert(`${name} is already in contacts`)
       : this.setState({ contacts: [...this.state.contacts, { name, number }] });
-    console.log(this.state.contacts);
   };
 
   changeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
   };
 
-  deleteContactPhonebook = data => {
-
-    const arr = [...this.state.contacts];
-    console.log(arr);
-    console.log(data);
-    let idx = arr.findIndex(contact => contact.id  === data);
-console.log(idx);
-    arr.splice(idx, 0);
-    // 
-
-    this.setState({ contacts: [...arr] });
-
-    // console.log(data);
-    // console.log(idx);
+  deleteContact = contactId => {
+    
+    this.setState(prevState => ({
+  contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+    }));
   };
 
   render() {
@@ -52,7 +42,6 @@ console.log(idx);
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-
     return (
       <div>
         <h2>Phonebook</h2>
@@ -61,8 +50,7 @@ console.log(idx);
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           value={filteredContacts}
-          stateValue={this.state.contacts}
-          onClick={this.deleteContactPhonebook}
+          onDeleteContact={this.deleteContact}
         />
       </div>
     );
